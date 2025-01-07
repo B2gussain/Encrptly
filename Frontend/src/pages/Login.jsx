@@ -6,15 +6,15 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const open_eye = useRef(null);
   const close_eye = useRef(null);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordType, setPasswordType] = useState(true);
-  const [formType, setFormType] = useState(true);
+  const [formType, setFormType] = useState(true); 
 
-  const API_BASE_URL = `${import.meta.env.VITE_BASE_API_URL}/api/auth`;
+  const API_BASE_URL = "http://localhost:5000/api/auth"; 
 
   const formTypeToggle = () => {
     setFormType((prev) => !prev);
@@ -37,8 +37,7 @@ const Login = () => {
   const handleSignin = async (e) => {
     e.preventDefault();
     try {
-      console.log(import.meta.env.VITE_BASE_API_URL)
-      const response = await axios.post(`${import.meta.env.VITE_BASE_API_URL}/signin`, {
+      const response = await axios.post(`${API_BASE_URL}/signin`, {
         email,
         password,
       });
@@ -67,13 +66,13 @@ const Login = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${import.meta.env.VITE_BASE_API_URL}/signup`, {
+      await axios.post(`${API_BASE_URL}/signup`, {
         name,
         email,
         password,
       });
       alert("Signup successful! You can now log in.");
-
+      
       formTypeToggle(); // Switch to signin form
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -132,11 +131,7 @@ const Login = () => {
           <div className="form_change_div">
             <p>
               Don't have an account?{" "}
-              <button
-                type="button"
-                className="register"
-                onClick={formTypeToggle}
-              >
+              <button type="button" className="register" onClick={formTypeToggle}>
                 REGISTER
               </button>
             </p>

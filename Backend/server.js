@@ -12,16 +12,8 @@ const passwordRoutes = require('./routes/password'); // Add this
 
 // Middleware
 app.use(express.json());
-// app.use(cors());
+app.use(cors());
 
-
-const corsOptions = {
-  origin: 'http://localhost:5173/', // Replace with your frontend's URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
-};
-
-app.use(cors(corsOptions));
 // Routes
 app.use("/api/auth", authRoutes);
 app.use('/api/password', passwordRoutes); // Add this
