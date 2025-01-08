@@ -12,7 +12,11 @@ const corsOptions = {
   origin: 'https://encrptly-full.onrender.com', // Set the frontend URL
  };
 
+
 app.use(cors(corsOptions));
+
+app.use(express.json()); // Parse incoming JSON requests
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded data
 
 // Routes
 app.use("/api/auth", authRoutes);
