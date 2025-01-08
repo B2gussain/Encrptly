@@ -21,7 +21,7 @@ const Navbar = ({ setToken }) => {
       setToken(null);
       localStorage.removeItem("token");
       localStorage.removeItem("username");
-      navigate("/login"); // Redirect to the login page
+      navigate("/"); // Redirect to the login page
     } else {
       // Do nothing if the user cancels
       console.log("Logout canceled");
