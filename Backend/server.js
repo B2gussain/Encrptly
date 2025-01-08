@@ -1,14 +1,11 @@
-
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const authRoutes = require("./routes/auth");
 require("dotenv").config(); // Load environment variables
 const app = express();
-const passwordRoutes = require('./routes/password'); // Add this
+const passwordRoutes = require("./routes/password"); // Add this
 // app.use('/api/password', passwordRoutes); // Add this
-
-
 
 // Middleware
 app.use(express.json());
@@ -16,8 +13,7 @@ app.use(cors());
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use('/api/password', passwordRoutes); // Add this
-
+app.use("/api/password", passwordRoutes); // Add this
 
 // Check environment variables
 if (!process.env.MONGO_URI) {
@@ -25,7 +21,7 @@ if (!process.env.MONGO_URI) {
   process.exit(1);
 }
 
-// if (!process.env.Port) {
+// if (!process.env.PORT) {
 //   console.error("PORT is not defined in .env file");
 //   process.exit(1);
 // }
@@ -35,6 +31,8 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected to MongoDB");
-    app.listen(process.env.Port, () => console.log(`Server running on http://localhost:${process.env.port}`));
+    app.listen(process.env.PORT, () =>
+      console.log(`Server running on http://localhost:${process.env.PORT}`)
+    );
   })
   .catch((err) => console.error("Error connecting to MongoDB:", err));
