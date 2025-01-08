@@ -7,9 +7,14 @@ const app = express();
 const passwordRoutes = require("./routes/password"); // Add this
 // app.use('/api/password', passwordRoutes); // Add this
 
-// Middleware
-app.use(express.json());
-app.use(cors());
+// Enable CORS for a specific origin
+const corsOptions = {
+  origin: 'https://encrptly-full.onrender.com', // Set the frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Methods allowed from the frontend
+  allowedHeaders: ['Content-Type', 'Authorization'], // Headers allowed in the requests
+};
+
+app.use(cors(corsOptions));
 
 // Routes
 app.use("/api/auth", authRoutes);
