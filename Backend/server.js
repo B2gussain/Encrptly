@@ -25,10 +25,10 @@ if (!process.env.MONGO_URI) {
   process.exit(1);
 }
 
-if (!process.env.Port) {
-  console.error("PORT is not defined in .env file");
-  process.exit(1);
-}
+// if (!process.env.Port) {
+//   console.error("PORT is not defined in .env file");
+//   process.exit(1);
+// }
 
 // Connect to MongoDB and start server
 mongoose
