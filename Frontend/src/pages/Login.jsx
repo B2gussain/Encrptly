@@ -14,7 +14,7 @@ const Login = () => {
   const [passwordType, setPasswordType] = useState(true);
   const [formType, setFormType] = useState(true); 
 
-  const API_BASE_URL = "http://localhost:5000/api/auth"; 
+  const API_BASE_URL = `${import.meta.env.VITE_API_URL}/api/auth`; 
 
   const formTypeToggle = () => {
     setFormType((prev) => !prev);

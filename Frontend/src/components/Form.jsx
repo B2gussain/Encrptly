@@ -29,7 +29,7 @@ const Form = ({ token }) => {
   };
 
   const fetchPasswords = async () => {
-    const response = await fetch('http://localhost:5000/api/password/list', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/password/list`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -55,7 +55,7 @@ const Form = ({ token }) => {
     }
   
     try {
-      const response = await fetch(`http://localhost:5000/api/password/delete/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/password/delete/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -88,7 +88,7 @@ const Form = ({ token }) => {
     if (editId) {
       // Edit existing password
       try {
-        const response = await fetch(`http://localhost:5000/api/password/edit/${editId}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/password/edit/${editId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -114,7 +114,7 @@ const Form = ({ token }) => {
     } else {
       // Add new password
       try {
-        const response = await fetch('http://localhost:5000/api/password/add', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/password/add`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
