@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { FaShieldAlt, FaEyeSlash, FaEye } from "react-icons/fa";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Loader from "../components/Loader/Loader"
 
 const Login = () => {
   const open_eye = useRef(null);
@@ -13,6 +14,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [passwordType, setPasswordType] = useState(true);
   const [formType, setFormType] = useState(true); 
+  const [loader, setloader] = useState(false);
+
 
   const API_BASE_URL = `${import.meta.env.VITE_API_URL}/api/auth`; 
 
@@ -36,6 +39,7 @@ const Login = () => {
   // Updated Signin function to store the username
   const handleSignin = async (e) => {
     e.preventDefault();
+    setloader(true)
     try {
       const response = await axios.post(`${API_BASE_URL}/signin`, {
         email,
@@ -45,6 +49,7 @@ const Login = () => {
       localStorage.setItem("token", token); // Store JWT token for authentication
       localStorage.setItem("username", name); // Store username
       alert("Signin successful!");
+      setloader(false)
       navigate("/Home"); // Redirect to /Home route
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -60,11 +65,13 @@ const Login = () => {
         console.error("Signin error:", error.message);
         alert("An unexpected error occurred. Please try again.");
       }
+      setloader(false)
     }
   };
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    setloader(true)
     try {
       await axios.post(`${API_BASE_URL}/signup`, {
         name,
@@ -72,6 +79,7 @@ const Login = () => {
         password,
       });
       alert("Signup successful! You can now log in.");
+      setloader(false);
       
       formTypeToggle(); // Switch to signin form
     } catch (error) {
@@ -81,12 +89,13 @@ const Login = () => {
         console.error("Signup error:", error.message);
         alert("An unexpected error occurred. Please try again.");
       }
+      setloader(false)
     }
   };
 
   return (
     <div className="Login">
-      {formType ? (
+{loader?<Loader/>:<> {formType ? (
         <form className="login-form" onSubmit={handleSignin}>
           <div
             className="title login_title"
@@ -195,7 +204,7 @@ const Login = () => {
             </p>
           </div>
         </form>
-      )}
+      )}</>}
     </div>
   );
 };
