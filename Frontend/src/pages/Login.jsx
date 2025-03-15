@@ -112,6 +112,7 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="login-input"
+            required
           />
           <span className="login_password_span">
             <input
@@ -120,6 +121,7 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="login_password_input"
+              required
             />
             <FaEye
               ref={open_eye}
@@ -163,6 +165,7 @@ const Login = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="login-input"
+            required
           />
           <input
             type="email"
@@ -170,6 +173,7 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="login-input"
+            required
           />
           <span className="login_password_span">
             <input
@@ -178,6 +182,7 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="login_password_input"
+              required
             />
             <FaEye
               ref={open_eye}
